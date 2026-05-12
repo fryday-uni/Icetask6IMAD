@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 class MainActivity : AppCompatActivity() {
 
-    data class HackQuestion(
+    data class quizQuestion(
         val question: String,
         val correctAnswer: Boolean
     )  // I find this kinda interesting
@@ -31,59 +31,72 @@ class MainActivity : AppCompatActivity() {
         val questionView = findViewById<TextView>(R.id.questionView)
         val feedbackView = findViewById<TextView>(R.id.feedbackView)
 
-        val hackQuestion = arrayOf(
-            HackQuestion("Lightning never strikes the same place twice.", false),
-            HackQuestion("Humans only use 10% of their brains.", false),
-            HackQuestion("Bananas are naturally radioactive.", true),
-            HackQuestion("There are more possible games of chess than atoms in the observable universe.", true),
-            HackQuestion("Water can boil and freeze at the same time", true)
+        val quizQAndA = arrayOf(
+            quizQuestion("Bats are blind.", false),
+            quizQuestion("Sound travels faster in water than in air", true),
+            quizQuestion("Honey never spoils.", true),
+            quizQuestion("Frogs are reptiles", false),
+            quizQuestion("Sharks are mammals", false),
+            quizQuestion("Goldfish only remember things for three seconds", false),
         ) //this is where we store all the questions and their true answers
 
-        fun showQuestion() {
-            questionView.text = hackQuestion[i].question
-            feedbackView.text = ""
-            userAnswer = null
-        }  // function so I can grab it later
+                // shuffle random question order
+                val remainingQuestions = quizQAndA.indices.shuffled().toMutableList() // still no clue what this does
 
-        showQuestion()
+                // stores current question
+                var currentQuestionIndex = 0
 
-        trueButton.setOnClickListener {
-            userAnswer = true
-        }
+                fun showQuestion() {
 
-        falseButton.setOnClickListener {
-            userAnswer = false
-        }
+                    // if all questions are done now
+                    if (remainingQuestions.isEmpty()) {
 
-        nextButton.setOnClickListener {
+                        val intent = Intent(this, ResultActivity::class.java)
+                        intent.putExtra("SCORE", points)
+                        startActivity(intent)
 
-            if (userAnswer == null)  {
-                feedbackView.text = "Pick true or false first!"
-                return@setOnClickListener  // cuts off the code here, stops weird errors, if there isn't a button pressed it sends a message
+                        return
+                    }
+
+                    // get random unused question
+                    currentQuestionIndex = remainingQuestions.removeAt(0)
+
+                    questionView.text = quizQAndA[currentQuestionIndex].question
+                    feedbackView.text = ""
+                    userAnswer = null
+                }
+
+                showQuestion()
+
+                trueButton.setOnClickListener {
+                    userAnswer = true
+                }
+
+                falseButton.setOnClickListener {
+                    userAnswer = false
+                }
+
+                nextButton.setOnClickListener {
+
+                    if (userAnswer == null) {
+                        feedbackView.text = "Pick true or false first!"
+                        return@setOnClickListener
+                    }
+
+                    // check answer
+                    if (quizQAndA[currentQuestionIndex].correctAnswer == userAnswer) {
+                        points++
+                        feedbackView.text = "Nicely done!"
+                    } else {
+                        feedbackView.text = "Oof"
+                    }
+
+                    // delay before next question
+                    questionView.postDelayed({
+
+                        showQuestion()
+
+                    }, 1500)
+                }
             }
-
-            if (hackQuestion[i].correctAnswer == userAnswer) { //if the current questions answer is correct it does this
-                points++ //adds 1 to the points
-                feedbackView.text = "Nicely done!"
-            } else {
-                feedbackView.text = "WRONG!!!"
-            }
-
-            questionView.postDelayed({
-                i++  //adds to index, changes question basically
-
-
-                // this takes us to the next question pretty much + delay
-
-                if (i < hackQuestion.size) {
-                    showQuestion()  //more flexible way of cutting it off
-                } else {
-
-                    val intent = Intent(this, ResultActivity::class.java)
-                    intent.putExtra("SCORE", points)
-                    //sends these values on over to the results page
-                    startActivity(intent) //sends us to the next activity
-                } }, 1500) //delays so we actually can see what feedback it is
         }
-    }
-}
