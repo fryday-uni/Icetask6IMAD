@@ -14,7 +14,7 @@ class WelcomeActivity : AppCompatActivity() {
         val welcomeText = findViewById<TextView>(R.id.textView)
         val continueButton = findViewById<Button>(R.id.button)
 
-        welcomeText.text = "welcome to myth or hack, a game which tests your common sense and learn useful real world shortcuts"
+        welcomeText.text = "welcome, to my quiz! can you get all 6 corrrect?, click the true or false button and press next to submit"
 
         continueButton.setOnClickListener {
 
