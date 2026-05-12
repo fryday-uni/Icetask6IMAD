@@ -17,6 +17,7 @@ class ResultActivity : AppCompatActivity() {
         // grabs these values from the main activity
 
         val resultView = findViewById<TextView>(R.id.resultView)
+        val restart = findViewById<Button>(R.id.restartButton)
 
 
         var scoreComment = ""
@@ -35,6 +36,14 @@ class ResultActivity : AppCompatActivity() {
         }
 
         resultView.text = "Your score is $score / $total,$scoreComment"
+
+
+        restart.setOnClickListener {
+
+            val intent = Intent(this, MainActivity::class.java )
+            startActivity(intent)
+        }
+
 
     }
 }
