@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#f3f3f3">
+
+    <Button
+        android:id="@+id/falseButton"
+        android:layout_width="129dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="144dp"
+        android:text="Myth"
+        android:backgroundTint="#f4e8c1"
+        android:textColor="#0f0f0f"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/trueButton"
+        android:layout_width="129dp"
+        android:layout_height="62dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="144dp"
+        android:text="Hack"
+        android:backgroundTint="#448fa3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="217dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="97dp"
+        android:layout_marginBottom="38dp"
+        android:text="next"
+        android:backgroundTint="#93626f"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/feedbackView"
+        android:layout_width="345dp"
+        android:layout_height="138dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="37dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionView" />
+
+    <TextView
+        android:id="@+id/questionView"
+        android:layout_width="345dp"
+        android:layout_height="260dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="35dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="110dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="151dp"
+        android:text="is this true?"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="#93626f"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
